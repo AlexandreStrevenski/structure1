@@ -5,10 +5,11 @@ import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AccountDAO {
+public interface AccountDAO extends JpaRepository {
 
     @SqlUpdate("CREATE TABLE account (id INTEGER PRIMARY KEY, number INTEGER)")
     void createTable();
