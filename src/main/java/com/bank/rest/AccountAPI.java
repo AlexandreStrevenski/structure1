@@ -28,7 +28,7 @@ public class AccountAPI {
 
     @RequestMapping(path = "/")
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("/welcome");
+        ModelAndView mv = new ModelAndView("/account");
         mv.addObject("accounts", getAccounts());
 
         return mv;
