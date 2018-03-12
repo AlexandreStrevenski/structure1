@@ -18,24 +18,18 @@ public class AccountService {
         MysqlDataSource dataSource = new MysqlDataSource();
 
         // Set dataSource Properties
-        dataSource.setServerName("heroku_d7f2b7276b5c14e");
+        dataSource.setServerName("us-cdbr-iron-east-05.cleardb.net");
         dataSource.setPortNumber(3306);
-        dataSource.setDatabaseName("nsei");
-        dataSource.setUser("b1672d0035f823");
-        dataSource.setPassword("e87fb1fe");
+        dataSource.setDatabaseName("heroku_e1256ca7c2d986f");
+        dataSource.setUser("b28e00a90fbfc1");
+        dataSource.setPassword("4b310ced");
 
         DataSource ds = dataSource;
         Jdbi jdbi = Jdbi.create(ds);
 
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        List<Account> accounts = jdbi.withExtension(AccountDAO.class, dao -> {
-            dao.createTable();
-            dao.insert(new Account(1L, 222L));
-            dao.insert(new Account(2L, 102030L));
-
-            return dao.listAccounts();
-        });
+        List<Account> accounts = jdbi.withExtension(AccountDAO.class, dao -> dao.listAccounts());
 
         return accounts;
     }
