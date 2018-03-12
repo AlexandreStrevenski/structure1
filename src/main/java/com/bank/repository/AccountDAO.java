@@ -5,11 +5,11 @@ import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface AccountDAO extends JpaRepository {
+public interface AccountDAO {
 
     @SqlUpdate("CREATE TABLE account (id INTEGER PRIMARY KEY, number INTEGER)")
     void createTable();
@@ -20,4 +20,21 @@ public interface AccountDAO extends JpaRepository {
     @SqlQuery("SELECT * FROM account ORDER BY id")
     @RegisterBeanMapper(Account.class)
     List<Account> listAccounts();
+
+    @SqlQuery("SELECT * FROM account where id = :id")
+    @RegisterBeanMapper(Account.class)
+    Optional<Account> findById(Long id);
+
+
+    /*T save(T entity);
+
+    Optional<T> findById(ID id);
+
+    Boolean exists(ID id);
+
+    List<T> findAll();
+
+    Long count();
+
+    void delete(ID id);*/
 }
