@@ -2,6 +2,7 @@ package com.bank.repository;
 
 import com.bank.entity.Account;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
+import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
@@ -23,7 +24,10 @@ public interface AccountDAO {
 
     @SqlQuery("SELECT * FROM account where id = :id")
     @RegisterBeanMapper(Account.class)
-    Optional<Account> findById(Long id);
+    Optional<Account> findById(@Bind("id") Long id);
+
+    @SqlUpdate("DELETE FROM account where id = :id")
+    void delete(@Bind("id") Long id);
 
 
     /*T save(T entity);
