@@ -23,4 +23,8 @@ public class AccountService {
     public void delete(Long id) {
         JDBI.instance().useExtension(AccountDAO.class, dao -> dao.delete(id));
     }
+
+    public void save(Account account){
+        JDBI.instance().useExtension(AccountDAO.class, dao -> dao.insert(account));
+    }
 }
