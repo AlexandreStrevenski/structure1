@@ -17,21 +17,21 @@ public class AccountAPI {
 
     @GetMapping(path = "/")
     public ModelAndView listAll() {
-        ModelAndView mv = new ModelAndView("/accountList");
+        ModelAndView mv = new ModelAndView("accountList");
         mv.addObject("accounts", accountService.listAll());
         return mv;
     }
 
     @GetMapping("/add")
     public ModelAndView add(Account account){
-        ModelAndView mv = new ModelAndView("/account");
+        ModelAndView mv = new ModelAndView("account");
         mv.addObject("account", account);
         return mv;
     }
 
     @GetMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable("id") Long id){
-        ModelAndView mv = new ModelAndView("/account");
+        ModelAndView mv = new ModelAndView("account");
         mv.addObject("account", accountService.findById(id));
         return mv;
     }
